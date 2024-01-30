@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+<!-- content -->
+{% block content %}
+<div class="container">
+  <section>
+    <div class="feature-posts">
+      <h1>Featured blogs</h1>
+    </div>
+  </section>
+  <hr />
+  <div class="page-container">
+    <div class="page-content">
+      <div class="row">
+        {% for blog in f_blogs %}
+        <div class="col-lg-6">
+          <div class="card text-center mb-5">
+            <div class="card-header p-0">
+              <div class="blog-media">
+                <img
+                  src="{{blog.thumbnail.url}}"
+                  alt=""
+                  class="w-100"
+                  style="width: 400px; height: 400px; object-fit: fill"
+                />
+                <a href="#" class="badge badge-primary">{{blog.category}}</a>
+              </div>
+            </div>
+            <div class="card-body px-0">
+              <h5 class="card-title mb-2">{{blog.title}}</h5>
+              <small class="small text-muted"
+                >{{blog.created|date:"F d, Y"}}
+                <span class="px-2">-</span>
+                <a href="#" class="text-muted">34 Comments</a>
+              </small>
+              <p class="my-2">{{blog.content|truncatechars:100}}</p>
+            </div>
+
+            <div class="card-footer p-0 text-center">
+              <a
+                href="{{blog.get_absolute_url}}"
+                class="btn btn-outline-dark btn-sm"
+                >READ MORE</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
